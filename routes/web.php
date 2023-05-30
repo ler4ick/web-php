@@ -25,6 +25,13 @@ Route::get('/hobby', function() {
     return view('hobby');
 });
 
+Route::get('/education', function() {
+    return view('education');
+});
+
+Route::get('/album', function() {
+    return view('album');
+});
 
 /* Route::get('main', 'App\Http\Controllers\MainController@index')->name('main.index');
 Route::get('aboutMe', 'App\Http\Controllers\AboutMeController@index')->name('aboutMe.index'); */

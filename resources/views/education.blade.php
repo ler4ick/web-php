@@ -7,7 +7,7 @@
 
     <script src="https://kit.fontawesome.com/91955f65d7.js" crossorigin="anonymous"></script>
 
-    @vite(['resources/css/main.css', 'resources/css/educayion.css', 'resources/js/jsHobbies.js', 'resources/js/handlers.js', 'resources/js/cookies.js', 'resources/js/currentDate.js'])
+    @vite(['resources/css/main.css', 'resources/css/education.css', 'resources/js/jsHobbies.js', 'resources/js/handlers.js', 'resources/js/cookies.js', 'resources/js/currentDate.js'])
 
 
     <style>
