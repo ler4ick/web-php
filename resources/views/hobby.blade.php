@@ -127,12 +127,19 @@
     </div>
 
     <div class="image_text">
-        <img src="photos\dog.jpg" alt="Кэти" title="Моя собака" width="300" class="round" ; />
+        <img src="photos/cat.jpg" alt="Мася" title="Моя кошка" width="300" class="round" ; />
     </div>
 
-    <h3 id="first" align=center> Мои хобби </h3>
-    <HR align="center" width="95%" size=3 color="#786d5f">
-    <p>
+        <?php foreach ($names as $val): ?>
+            <h3 id="<?= $val['id'] ?>" align=center><?= $val['name'] ?> </h3>
+            <HR align="center" width="95%" size=3 color="#786d5f">
+                <ol>
+                <?php foreach ($val['description'] as $val): ?>
+                    <li> <?= $val ?> </li>
+                <?php endforeach; ?>
+            </ol>
+        <?php endforeach; ?>
+    {{-- <p>
         <ol>
             <li> <a>Писательство/чтение</a> </li>
             <li> <a>Вязание на спицах</a> </li>
@@ -142,7 +149,7 @@
     </p>
     <h3 id="second" align=center> Любимая музыка </h3>
     <HR align="center" width="95%" size=3 color="#786d5f">
-    <div>
+
         <p>
             <ol>
                 <li> <a>My Chemical Romance</a> </li>
@@ -153,18 +160,18 @@
                 <li> <a>Breaking Benjamin</a> </li>
             </ol>
         </p>
-    </div>
+
 
     <h3 id="third" align=center> Любимые произведения </h3>
     <HR align="center" width="95%" size=3 color="#786d5f">
-    <div>
+
         <p>
             <ol>
                 <li> <a>"Опиумная война" Р. Куанг</a> </li>
                 <li> <a>"Франкенштейн" М. Шелли</a> </li>
             </ol>
-        </p>
-    </div>
+        </p> --}}
+
 
 </body>
 

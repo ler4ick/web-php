@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HobbyModel;
 
-class AboutMeController extends Controller
+class HobbyController extends Controller
 {
     public  function index() {
-        return view('aboutMe');
+        $interestsModel = new HobbyModel();
+        $data = $interestsModel->aboutMe();
+        $vars = ['names' => $data];
+
+        return view('hobby', $vars);
     }
 }
