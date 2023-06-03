@@ -33,5 +33,7 @@ Route::get('/album', function() {
     return view('album');
 });
 
-/* Route::get('main', 'App\Http\Controllers\MainController@index')->name('main.index');
-Route::get('aboutMe', 'App\Http\Controllers\AboutMeController@index')->name('aboutMe.index'); */
+Route::get('main', 'App\Http\Controllers\MainController@index')->name('main.index');
+Route::get('aboutMe', 'App\Http\Controllers\AboutMeController@index')->name('aboutMe.index');
+Route::get('album', 'App\Http\Controllers\AlbumController@index')->name('album.index');
+Route::get('hobby', 'App\Http\Controllers\HobbyController@index')->name('hobby.index');

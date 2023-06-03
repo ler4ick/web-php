@@ -71,7 +71,7 @@
         <nav>
             <ul>
                 <li id="Main">
-                    <a href="main.html">
+                    <a href="main">
                         <i id="MainI" class=""></i>Главная</a>
                 </li>
                 <li id="AboutMe">
@@ -84,31 +84,31 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="myDropdown">
-                            <a href="hobby.html#MyHobby">Интересы</a>
-                            <a href="hobby.html#FavMovies">Мои хобби</a>
-                            <a href="hobby.html#FavBands">Любимая музыка</a>
-                            <a href="hobby.html#FavBooks">Любимые произведения</a>
+                            <a href="hobby#MyHobby">Интересы</a>
+                            <a href="hobby#FavMovies">Мои хобби</a>
+                            <a href="hobby#FavBands">Любимая музыка</a>
+                            <a href="hobby#FavBooks">Любимые произведения</a>
                         </div>
                     </div>
                 </li>
                 <li id="Study">
-                    <a href="education.html">
+                    <a href="education">
                         <i id="StudyI"></i>Учеба</a>
                 </li>
                 <li id="Photoalbum">
-                    <a href="album.html">
+                    <a href="album">
                         <i id="PhotoalbumI"></i>Фотоальбом</a>
                 </li>
                 <li id="Contacts">
-                    <a href="contact.html">
+                    <a href="contact">
                         <i id="ContactsI"></i>Контакты</a>
                 </li>
                 <li id="Task">
-                    <a href="test.html">
+                    <a href="test">
                         <i id="TaskI"></i>Тест по дисциплине</a>
                 </li>
                 <li id="History">
-                    <a href="history.html">
+                    <a href="history">
                         <i id="HistoryI"></i>История</a>
                 </li>
                 <li>
@@ -132,6 +132,26 @@
             <img-popup v-if="index !== -1" :photos="photos" :index="index" @close="index=-1">
             </img-popup>
         </div> --}}
+        <table id="table">
+            <?php
+            $i=0;
+            foreach ($args as $val) {
+                $id = $val['id'];
+                $src = $val['src'];
+                $alt = $val['alt'];
+                echo $src;
+                $titles = $val['titles'];
+                $figcaption = $val['figcaption'];
+                echo "<td><img id=\"$id\"class=\"inTable\"
+                src=\"$src\" alt=\"$alt\" titles=\"$titles\"
+                onclick=\"bigFotoDiv(this)\">
+                <figcaption>$figcaption</figcaption></td>";
+                if (++$i % 5 == 0) {
+                    echo "</tr><tr>";
+                }
+            }
+            ?>
+        </table>
     </div>
 
     <!-- <div class="gallery">
