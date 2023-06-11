@@ -125,7 +125,7 @@
 
 
             <P align="center">
-                <IMG src="./photos/dino.png" class="round" width=500>
+                <img src="/photos/cat.jpg" class="round" width=500>
 
                 <P align="center">Dinosaurs </p>
 
