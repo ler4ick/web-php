@@ -1,57 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en" dir="ltr">
+
 <head>
-    <meta http-equiv="charset" content="windws-1251">
-    <title>Главная. Скороходова</title>
+    <meta charset="utf-8">
+    @vite(['resources/css/main.css', 'resources/css/test.css', 'resources/css/contact.css' ,'resources/js/handlers.js', 'resources/js/cookies.js', 'resources/js/currentDate.js'])
 
-    <script src="https://kit.fontawesome.com/91955f65d7.js" crossorigin="anonymous"></script>
-
-    @vite(['resources/css/main.css', 'resources/js/handlers.js', 'resources/js/cookies.js', 'resources/js/currentDate.js'])
-
-    <style>
-        .round {
-            border-radius: 30px;
-            border: 3px #483c32;
-            box-shadow: 0 0 7px #666;
-        }
-    </style>
-    <script>
-        /* When the user clicks on the button,
-                                                                                toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(e) {
-            if (!e.target.matches('.dropbtn')) {
-                var myDropdown = document.getElementById("myDropdown");
-                if (myDropdown.classList.contains('show')) {
-                    myDropdown.classList.remove('show');
-                }
-            }
-        }
-        window.onload = () => {
-            var keyMain = localStorage.getItem("Main");
-
-            if (keyMain != NaN) {
-                localStorage.setItem("Main", Number(keyMain) + 1);
-            } else {
-                localStorage.setItem("Main", 1);
-            }
-
-            var value = getCookie("Main");
-            var expDays = 7;
-
-            if (value != NaN) {
-                setCookie("Main", value - 0 + 1, expDays);
-            } else {
-                setCookie("Main", 1, expDays);
-            }
-            graphics();
-        }
-    </script>
-
+    <title>Мой блог</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -59,7 +14,7 @@
         <nav>
             <ul>
                 <li id="Main">
-                    <a href="/">
+                    <a href="main">
                         <i id="MainI" class=""></i>Главная</a>
                 </li>
                 <li id="AboutMe">
@@ -107,7 +62,7 @@
                     <a href="guestBookUpload">
                         <i id="BookI"></i>Загрузка гостевой книги</a>
                 </li>
-                <li>
+                <li id="GuestBook">
                     <a href="blog">
                         <i id="BookI"></i>Блог</a>
                 </li>
@@ -117,30 +72,64 @@
                 </li>
                 <li>
                     <div id="date">
+                        <script>
+                            clockTick()
+                        </script>
                     </div>
                 </li>
             </ul>
         </nav>
     </div>
 
-    <div class="header1">
-        <h1>Скороходова Валерия Александровна</h1>
+<div class="HeaderTest" align=center>
+    <h2>Блог</h2>
+</div>
+
+<form id="form" class="blog-form" enctype="multipart/form-data" method="post" action="{{ route('blog.store') }}">
+    @csrf
+    <div class="blogInputForm">
+    <label for="title">Тема сообщения:</label>
+        <p><input type="text" name="title" id="title" required></p>
+
+    <label for="image">Изображение:</label>
+        <p> <input type="file" name="image" id="image"></p>
+
+    <label for="content">Текст сообщения:</label>
+        <p><textarea name="message" id="message" rows="5" required></textarea></p>
+
+        <p><input type="submit" value="Отправить"></p>
     </div>
 
-    <div class="image_text">
-        <img src="/photos/16.JPG" alt="Лера" title="Лера" width="500px" height="500px" class="round" />
-    </div>
+    <table class="blog-table">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Заголовок</th>
+            <th>Сообщение</th>
+            <th>Изображение</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    <div class="header2">
-        <p>ИС/б-20-1-о</p>
-    </div>
-    <div class="header3">
-        <P align=center>Лабораторная работа №1
+        @foreach($blogPosts as $posts)
+            <tr>
+                <td>{{ $posts->created_at->format('d.m.Y H:i') }}</td>
+                <td>{{ $posts->title }}</td>
+                <td>{{ $posts->message }}</td>
+                <td style="width: 100px; height: 150px;">
+                    @if ($posts->image)
+                        <img src="{{ Storage::url('blog_images/' . $posts->image) }}" alt="{{ $posts->title }}" width="100px" height="150px">
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
-        </P>
-
+    <div class="pagination">
+        {{ $blogPosts->links() }}
     </div>
-    <HR align="center" width="95%" size=3 color="#786d5f">
+</form>
 </body>
 
 </html>

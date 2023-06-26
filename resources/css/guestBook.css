@@ -1,0 +1,13 @@
+.namingIsMyMiddleNameForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.messageTable,
+.messageTable th,
+.messageTable td {
+    border: 1px solid black;
+}

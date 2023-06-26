@@ -63,11 +63,11 @@
             <nav>
                 <ul>
                     <li id="Main">
-                        <a href="main.html">
+                        <a href="main">
                             <i id="MainI" class=""></i>Главная</a>
                     </li>
                     <li id="AboutMe">
-                        <a href="about_me.html">
+                        <a href="about_me">
                             <i id="AboutMeI"></i>Обо мне</a>
                     </li>
                     <li>
@@ -76,31 +76,31 @@
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content" id="myDropdown">
-                                <a href="hobby.html#MyHobby">Моё хобби</a>
-                                <a href="hobby.html#FavMovies">Хобби</a>
-                                <a href="hobby.html#FavBands">Музыка</a>
-                                <a href="hobby.html#FavBooks">Любимые книги</a>
+                                <a href="hobby#MyHobby">Моё хобби</a>
+                                <a href="hobby#FavMovies">Хобби</a>
+                                <a href="hobby#FavBands">Музыка</a>
+                                <a href="hobby#FavBooks">Любимые книги</a>
                             </div>
                         </div>
                     </li>
                     <li id="Study">
-                        <a href="education.html">
+                        <a href="education">
                             <i id="StudyI"></i>Учеба</a>
                     </li>
                     <li id="Photoalbum">
-                        <a href="album.html">
+                        <a href="album">
                             <i id="PhotoalbumI"></i>Фотоальбом</a>
                     </li>
                     <li id="Contacts">
-                        <a href="contact.html">
+                        <a href="contact">
                             <i id="ContactsI"></i>Контакты</a>
                     </li>
                     <li id="Task">
-                        <a href="test.html">
+                        <a href="test">
                             <i id="TaskI"></i>Тест по дисциплине</a>
                     </li>
                     <li id="History">
-                        <a href="history.html">
+                        <a href="history">
                             <i id="HistoryI"></i>История</a>
                     </li>
                     <li>

@@ -102,6 +102,10 @@
                         <i id="HistoryI"></i>История</a>
                 </li>
                 <li>
+                    <a href="blog">
+                        <i id="BookI"></i>Блог</a>
+                </li>
+                <li>
                     <div id="date">
                         <script>
                             clockTick()
@@ -118,7 +122,7 @@
         @csrf
         <div class="forma1">
             <label for="name">Имя пользователя:</label>
-            <input type="text" placeholder="Введите ФИО" id="name" required>
+            <input name="name" type="text" placeholder="Введите ФИО" id="name" required>
         </div>
 
 
@@ -130,27 +134,27 @@
 
         <div class="forma2">
             <p>Выберите вашу группу</p>
-            <select name="Group_1[]" multiple="multiple" size="9">
+            <select name="group" multiple="multiple" size="9">
                 <optgroup label="1 курс">
-                    <option value="1">ИС/б-20-1-о </option>
-                    <option value="2">ИС/б-20-2-о </option>
-                    <option value="1">ИС/б-20-3-о </option>
-                    <option value="2">ПИ/б-20-1-о </option>
+                    <option value="ИС/б-20-1-о">ИС/б-20-1-о </option>
+                    <option value="ИС/б-20-2-о">ИС/б-20-2-о </option>
+                    <option value="ИС/б-20-3-о">ИС/б-20-3-о </option>
+                    <option value="ПИ/б-20-1-о">ПИ/б-20-1-о </option>
                 </optgroup>
                 <optgroup label="2 курс">
-                    <option value="3">ИС/б-19-1-о</option>
-                    <option value="4">ИС/б-19-2-о</option>
-                    <option value="5">ИС/б-19-3-о</option>
+                    <option value="ИС/б-19-1-о">ИС/б-19-1-о</option>
+                    <option value="ИС/б-19-2-о">ИС/б-19-2-о</option>
+                    <option value="ИС/б-19-3-о">ИС/б-19-3-о</option>
                     <option value="6">ПИ/б-19-1-о</option>
                 </optgroup>
                 <optgroup label="3 курс">
-                    <option value="7">ИС/б-18-1-о</option>
+                    <option value="ИС/б-18-1-о">ИС/б-18-1-о</option>
                     <option value="8">ИС/б-18-2-о</option>
-                    <option value="9">ПИ/б-18-1-о</option>
+                    <option value="ИС/б-18-2-о">ПИ/б-18-1-о</option>
                 </optgroup>
                 <optgroup label="4 курс">
-                    <option value="10">ИС/б-17-1-о</option>
-                    <option value="11">ПИ/б-17-1-о</option>
+                    <option value="ИС/б-17-1-о">ИС/б-17-1-о</option>
+                    <option value="ПИ/б-17-1-о">ПИ/б-17-1-о</option>
                 </optgroup>
             </select>
         </div>
@@ -194,6 +198,33 @@
         </div>
 
     </form>
+    <div class="HeaderTest" align=center>
+        <h2>Ответы на тест по дисциплине "Безопасность жизнедеятельности"</h2>
+    </div>
+
+    <div class="answerTest"><table>
+            <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Ответ 1</th>
+                <th>Ответ 2</th>
+                <th>Ответ 3</th>
+                <th>Верно</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($testAnswers as $testAnswer)
+                <tr>
+                    <td>{{ $testAnswer->FIO }}</td>
+                    <td>{{ $testAnswer->answer1 }}</td>
+                    <td>{{ $testAnswer->answer2 }}</td>
+                    <td>{{ $testAnswer->answer3 }}</td>
+                    <td>{{ $testAnswer->isCorrect }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 </body>
 
 <html>
