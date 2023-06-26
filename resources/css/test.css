@@ -1,15 +1,23 @@
-.forma3{
+.forma3 {
     margin-bottom: 10px;
 }
 
-.forma5{
+.forma5 {
     margin-bottom: 20px;
 }
 
-.forma_mail{
+.forma_mail {
     margin-bottom: 10px;
 }
 
-.buttons{
+.buttons {
     margin-bottom: 20px;
+}
+
+.answerTest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
 }
