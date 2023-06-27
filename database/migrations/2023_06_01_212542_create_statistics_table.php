@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('test_answer', function (Blueprint $table) {
+        Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->string('FIO');
-            $table->string('group');
-            $table->string('answer1');
-            $table->string('answer2');
-            $table->string('answer3');
-            $table->boolean('isCorrect');
+            $table->string('host_name');
+            $table->string('browser_name');
+            $table->string('page');
+            $table->string('ip');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('statistics');
     }
 };

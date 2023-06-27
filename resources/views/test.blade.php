@@ -57,64 +57,17 @@
 </head>
 
 <body>
-    <div class="header-menu">
-        <nav>
-            <ul>
-                <li id="Main">
-                    <a href="main">
-                        <i id="MainI" class=""></i>Главная</a>
-                </li>
-                <li id="AboutMe">
-                    <a href="about_me">
-                        <i id="AboutMeI"></i>Обо мне</a>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction()">Мои интересы
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content" id="myDropdown">
-                            <a href="hobby#MyHobby">Моё хобби</a>
-                            <a href="hobby#FavMovies">Любимые фильмы</a>
-                            <a href="hobby#FavBands">Любимые группы</a>
-                            <a href="hobby#FavBooks">Любимые книги</a>
-                        </div>
-                    </div>
-                </li>
-                <li id="Study">
-                    <a href="education">
-                        <i id="StudyI"></i>Учеба</a>
-                </li>
-                <li id="Photoalbum">
-                    <a href="album">
-                        <i id="PhotoalbumI"></i>Фотоальбом</a>
-                </li>
-                <li id="Contacts">
-                    <a href="contact">
-                        <i id="ContactsI"></i>Контакты</a>
-                </li>
-                <li id="Task">
-                    <a href="test">
-                        <i id="TaskI"></i>Тест по дисциплине</a>
-                </li>
-                <li id="History">
-                    <a href="history">
-                        <i id="HistoryI"></i>История</a>
-                </li>
-                <li>
-                    <a href="blog">
-                        <i id="BookI"></i>Блог</a>
-                </li>
-                <li>
-                    <div id="date">
-                        <script>
-                            clockTick()
-                        </script>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    @include('layouts/header')
+
+    <script>
+        setCookie("history")
+    </script>
+    <script>
+        setLS("history")
+    </script>
+    <script>
+        setLL("history")
+    </script>
     <div class="header1">
         <h2>Тест по дисциплине: Высшая математика</h2>
     </div>
@@ -127,10 +80,10 @@
 
 
         @if(isset($result))
-        <h2 style="margin-bottom: 3em">
-            Правильных ответов - {{$result}}
-        </h2>
-    @endif
+            <h2 style="margin-bottom: 3em">
+                Правильных ответов - {{$result}}
+            </h2>
+        @endif
 
         <div class="forma2">
             <p>Выберите вашу группу</p>
@@ -198,33 +151,34 @@
         </div>
 
     </form>
-    <div class="HeaderTest" align=center>
-        <h2>Ответы на тест по дисциплине "Безопасность жизнедеятельности"</h2>
-    </div>
-
-    <div class="answerTest"><table>
-            <thead>
-            <tr>
-                <th>ФИО</th>
-                <th>Ответ 1</th>
-                <th>Ответ 2</th>
-                <th>Ответ 3</th>
-                <th>Верно</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($testAnswers as $testAnswer)
+    @if(Illuminate\Support\Facades\Auth::check())
+        <div class="HeaderTest" align=center>
+            <h2>Ответы на тест по дисциплине "Безопасность жизнедеятельности"</h2>
+        </div>
+        <div class="answerTest"><table>
+                <thead>
                 <tr>
-                    <td>{{ $testAnswer->FIO }}</td>
-                    <td>{{ $testAnswer->answer1 }}</td>
-                    <td>{{ $testAnswer->answer2 }}</td>
-                    <td>{{ $testAnswer->answer3 }}</td>
-                    <td>{{ $testAnswer->isCorrect }}</td>
+                    <th>ФИО</th>
+                    <th>Ответ 1</th>
+                    <th>Ответ 2</th>
+                    <th>Ответ 3</th>
+                    <th>Верно</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                @foreach ($testAnswers as $testAnswer)
+                    <tr>
+                        <td>{{ $testAnswer->FIO }}</td>
+                        <td>{{ $testAnswer->answer1 }}</td>
+                        <td>{{ $testAnswer->answer2 }}</td>
+                        <td>{{ $testAnswer->answer3 }}</td>
+                        <td>{{ $testAnswer->isCorrect }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 </body>
 
 <html>

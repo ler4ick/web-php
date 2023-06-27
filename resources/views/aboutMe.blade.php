@@ -53,60 +53,17 @@
 </head>
 
 <body>
-    <div class="header-menu">
-        <nav>
-            <ul>
-                <li id="Main">
-                    <a href="/">
-                        <i id="MainI" class=""></i>Главная</a>
-                </li>
-                <li id="AboutMe">
-                    <a href="about_me">
-                        <i id="AboutMeI"></i>Обо мне</a>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction()">Мои интересы
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content" id="myDropdown">
-                            <a href="hobby#MyHobby">Моё хобби</a>
-                            <a href="hobby#FavMovies">Любимые фильмы</a>
-                            <a href="hobby#FavBands">Любимые группы</a>
-                            <a href="hobby#FavBooks">Любимые книги</a>
-                        </div>
-                    </div>
-                </li>
-                <li id="Study">
-                    <a href="education">
-                        <i id="StudyI"></i>Учеба</a>
-                </li>
-                <li id="Photoalbum">
-                    <a href="album">
-                        <i id="PhotoalbumI"></i>Фотоальбом</a>
-                </li>
-                <li id="Contacts">
-                    <a href="contact">
-                        <i id="ContactsI"></i>Контакты</a>
-                </li>
-                <li id="Task">
-                    <a href="test">
-                        <i id="TaskI"></i>Тест по дисциплине</a>
-                </li>
-                <li id="History">
-                    <a href="history">
-                        <i id="HistoryI"></i>История</a>
-                </li>
-                <li>
-                    <div id="date">
-                        <script>
-                            clockTick()
-                        </script>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    @include('layouts/header')
+
+<script>
+    setCookie("history")
+</script>
+<script>
+    setLS("history")
+</script>
+<script>
+    setLL("history")
+</script>
 
     <div class="header1">
         <h2>About me</h2>

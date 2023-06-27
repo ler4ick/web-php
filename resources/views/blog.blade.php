@@ -9,77 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+@php
+    use \Illuminate\Support\Facades\Auth;
+
+    $user = Auth::user();
+    $isUserAdmin = (Auth::check() and $user->isAdmin());
+    $isUserRedactor = (Auth::check() and $user->isRedactor());
+@endphp
+
 <body>
-    <div class="header-menu">
-        <nav>
-            <ul>
-                <li id="Main">
-                    <a href="main">
-                        <i id="MainI" class=""></i>Главная</a>
-                </li>
-                <li id="AboutMe">
-                    <a href="about_me">
-                        <i id="AboutMeI"></i>Обо мне</a>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction()">Мои интересы
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content" id="myDropdown">
-                            <a href="hobby#MyHobby">Моё хобби</a>
-                            <a href="hobby#FavMovies">Любимые фильмы</a>
-                            <a href="hobby#FavBands">Любимые группы</a>
-                            <a href="hobby#FavBooks">Любимые книги</a>
-                        </div>
-                    </div>
-                </li>
-                <li id="Study">
-                    <a href="education">
-                        <i id="StudyI"></i>Учеба</a>
-                </li>
-                <li id="Photoalbum">
-                    <a href="album">
-                        <i id="PhotoalbumI"></i>Фотоальбом</a>
-                </li>
-                <li id="Contacts">
-                    <a href="contact">
-                        <i id="ContactsI"></i>Контакты</a>
-                </li>
-                <li id="Task">
-                    <a href="test">
-                        <i id="TaskI"></i>Тест по дисциплине</a>
-                </li>
-                <li id="History">
-                    <a href="history">
-                        <i id="HistoryI"></i>История</a>
-                </li>
-                <li id="GuestBook">
-                    <a href="guestBook">
-                        <i id="BookI"></i>Гостевая книга</a>
-                </li>
-                <li id="GuestBook">
-                    <a href="guestBookUpload">
-                        <i id="BookI"></i>Загрузка гостевой книги</a>
-                </li>
-                <li id="GuestBook">
-                    <a href="blog">
-                        <i id="BookI"></i>Блог</a>
-                </li>
-                <li id="GuestBook">
-                    <a href="blogUpload">
-                        <i id="BookI"></i>Загрузка блога</a>
-                </li>
-                <li>
-                    <div id="date">
-                        <script>
-                            clockTick()
-                        </script>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    @include('layouts/header')
+
+    <script>
+        setCookie("history")
+    </script>
+    <script>
+        setLS("history")
+    </script>
+    <script>
+        setLL("history")
+    </script>
 
 <div class="HeaderTest" align=center>
     <h2>Блог</h2>
@@ -99,7 +48,8 @@
 
         <p><input type="submit" value="Отправить"></p>
     </div>
-
+</form>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
     <table class="blog-table">
         <thead>
         <tr>
@@ -107,10 +57,12 @@
             <th>Заголовок</th>
             <th>Сообщение</th>
             <th>Изображение</th>
+            @if($isUserAdmin)
+                <th></th>
+            @endif
         </tr>
         </thead>
         <tbody>
-
         @foreach($blogPosts as $posts)
             <tr>
                 <td>{{ $posts->created_at->format('d.m.Y H:i') }}</td>
@@ -121,6 +73,18 @@
                         <img src="{{ Storage::url('blog_images/' . $posts->image) }}" alt="{{ $posts->title }}" width="100px" height="150px">
                     @endif
                 </td>
+                @if($isUserAdmin or $isUserRedactor)
+                    <td>
+                        <form method="POST" action="{{ route('blog.delete', ['id' => $posts->id]) }}">
+                            @method('delete')
+                            @csrf
+                            <button>Удалить</button>
+                        </form>
+                        <a href="{{ route('blog.edit', ['id' => $posts->id]) }}">
+                            <button>Редактировать</button>
+                        </a>
+                    </td>
+                @endif
             </tr>
         @endforeach
         </tbody>
@@ -129,7 +93,7 @@
     <div class="pagination">
         {{ $blogPosts->links() }}
     </div>
-</form>
+</div>
 </body>
 
 </html>
