@@ -10,4 +10,8 @@ class BlogModel extends Model
     protected $table = 'blog_models';
 
     protected $fillable = ['title', 'message', 'image'];
+
+    public function comments(){
+        return $this->hasMany(BlogComment::class);
+    }
 }

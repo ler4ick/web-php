@@ -19,6 +19,23 @@
 
 <body>
 
+    <script>
+        const checkLoginUnique = () => {
+            const button = document.getElementById('submit-button')
+            const loginField = document.getElementById('login')
+            button.disabled = false;
+
+            const params = new URLSearchParams()
+
+            params.set('login', loginField.value)
+
+            fetch(`{{ route('api.auth.checkUniqueLogin') }}?${params.toString()}`).then(res => res.json())
+            .then(res => {
+               button.disabled = !res.data.is_unique
+            })
+        }
+    </script>
+
 @include('layouts/header')
 
 <div class="HeaderTest" align=center>
@@ -51,9 +68,9 @@
 
     <div style="margin-bottom: 20px">
         <label for="login">
-            Логи
+            Логин
         </label>
-        <input id="login" type="text" name="login" required />
+        <input id="login" type="text" name="login" required onblur="checkLoginUnique(event)" />
         @if($errors->has('login'))
             <p style="color: red">{{ $errors->get('login')[0] }}</p>
         @endif
@@ -70,7 +87,7 @@
     </div>
 
     <div>
-        <button>
+        <button type="submit" id="submit-button">
             Зарегистрироваться
         </button>
     </div>
